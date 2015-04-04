@@ -545,7 +545,7 @@ public class Level extends JPanel  {
 			}
 			
 			for(i=0; i<spikeNumber; i++){
-				if((player.X > spikePos[i][0]-54 && player.X+10 < spikePos[i][0]+56) && (player.Y > spikePos[i][1]-40 && player.Y+64 < spikePos[i][1]+60)){Window.dead=true;if(!Window.MUTE)Sound.DEAD.play();}
+				if((player!=null && player.getX() > spikePos[i][0]-54 && player.getX()+10 < spikePos[i][0]+56) && (player.getY() > spikePos[i][1]-40 && player.getY()+64 < spikePos[i][1]+60)){Window.dead=true;if(!Window.MUTE)Sound.DEAD.play();}
 			}
 			for(i=0; i<boxNumber; i++){
 				boxList[i].move();
@@ -795,8 +795,6 @@ public class Level extends JPanel  {
 			g.setColor(myBlack2);
 			g.fillRect(0, 0,965*size, 540*size);}
 			
-			
-	
 		}
 
 

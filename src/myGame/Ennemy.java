@@ -15,18 +15,11 @@ import javax.swing.JPanel;
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int maxDroite=0;
-	private int maxGauche=0;
-	private int posX=0;
-	private int posY=0;
-	private int posCarX=0;
-	private int posCarY=0;
-	private int xa=0;
-	private int Target = 0;
+	private int maxDroite=0, maxGauche=0, posX=0, posY=0, posCarX=0, posCarY=0, xa=0, Target = 0, animationTime;
 	private JLayeredPane Dog;
 	private boolean droite=false;
 	private boolean gauche=false;
-	private boolean bougerX=true;;
+	private boolean bougerX=true;
 	private int stopGauche = 0;
 	private int stopDroite = 0;
 	private String chemin;
@@ -41,6 +34,7 @@ import javax.swing.JPanel;
 			this.maxGauche = limiteGauche;
 			this.maxDroite = limiteDroite;
 			this.Target = limiteGauche;
+			animationTime=1;
 	}
 	
 	public void ennemiMove(){
@@ -103,30 +97,26 @@ import javax.swing.JPanel;
 	public void paint(Graphics g) {
 		
 		Dog = new JLayeredPane();
-		
-		if(startTimer2){savedTime2 = System.currentTimeMillis();startTimer2=false;}
+		long currentTimeMillis = System.currentTimeMillis();
+		if(startTimer2){savedTime2 = System.currentTimeMillis();startTimer2=false;animationTime=1;}
 		
 		 try {   	
 			if(gauche){
-				if(System.currentTimeMillis() > savedTime2+700)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/07.png"));
-				else if(System.currentTimeMillis() > savedTime2+600)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/06.png"));
-				else if(System.currentTimeMillis() > savedTime2+500)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/05.png"));
-				else if(System.currentTimeMillis() > savedTime2+400)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/04.png"));
-				else if(System.currentTimeMillis() > savedTime2+300)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/03.png"));
-				else if(System.currentTimeMillis() > savedTime2+200)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/02.png"));
-				else if(System.currentTimeMillis() > savedTime2+100)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/01.png"));
-				if(System.currentTimeMillis() > savedTime2+700)startTimer2=true;
-	    		
-			}
+			
+				if(currentTimeMillis > savedTime2+(100*animationTime)){
+    				img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/0"+animationTime+".png"));
+    				animationTime++;	    				
+    			}
+    			if(animationTime>=8){startTimer2=true;}
+	    	}
+	    	
 			else if(droite){	
-    			if(System.currentTimeMillis() > savedTime2+700)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/07.png"));
-    			else if(System.currentTimeMillis() > savedTime2+600)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/06.png"));
-				else if(System.currentTimeMillis() > savedTime2+500)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/05.png"));
-				else if(System.currentTimeMillis() > savedTime2+400)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/04.png"));
-				else if(System.currentTimeMillis() > savedTime2+300)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/03.png"));
-				else if(System.currentTimeMillis() > savedTime2+200)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/02.png"));
-				else if(System.currentTimeMillis() > savedTime2+100)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/01.png"));
-    			if(System.currentTimeMillis() > savedTime2+700)startTimer2=true;
+    			
+				if(currentTimeMillis > savedTime2+(100*animationTime)){
+    				img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/0"+animationTime+".png"));
+    				animationTime++;	    				
+    			}
+    			if(animationTime>=8){startTimer2=true;}
 		    		
 			}
 		  } catch (IOException e) {

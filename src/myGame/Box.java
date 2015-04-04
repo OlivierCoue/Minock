@@ -20,7 +20,6 @@ import javax.swing.JLayeredPane;
 public class Box {
 	
 	private JLayeredPane EverythingButPlayer;
-	private static int SIZE = Window.SIZE;
 	private int WIDTH = 48*Main.SreenSize;
 	private int HEIGHT = 38*Main.SreenSize;
 

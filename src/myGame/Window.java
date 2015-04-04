@@ -8,8 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -36,7 +34,7 @@ public class Window extends JFrame{
 	private Option option = new Option();
 	private int levelActuel = 0, i=0;
 	private static int levelNumber=LEVELNUMBER;		
-	private boolean pause=false, inMenu=true, loadingFinished = false;
+	private boolean pause=false, inMenu=true;
 	public static String[] passWord = new String[levelNumber];
 	
 	public Window() throws Throwable {	
@@ -69,7 +67,6 @@ public class Window extends JFrame{
 			level[i]=null;
 		}
 		if(!MUTE)Sound.AMBIENCE.loop();
-		loadingFinished = true;
 		containerTotal.removeAll();
 		containerTotal.add(containerMenu);
 		revalidate();
@@ -160,7 +157,7 @@ public class Window extends JFrame{
 			}
 			containerTotal.repaint();
 			containerTotal.revalidate();
-			if(level[levelActuel]!=null && !inMenu && !level[levelActuel].isTransitionDone())repaint();
+			if(level[levelActuel]!=null && !inMenu && !level[levelActuel].isTransitionDone())repaint();			
 		}	
 		
 	}
