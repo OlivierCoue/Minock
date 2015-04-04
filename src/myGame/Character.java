@@ -107,17 +107,17 @@ public class Character {
 			Character.X = x;
 			Character.Y = y;
 		}
-		if(animer && startStep){step=20000000;startStep=false;}
+		if(animer && startStep){step=100;startStep=false;}
 		if(!animer)startStep=true;
 
 		if( System.nanoTime() > savedTimeStart+1000000/Main.SreenSize){
 			savedTimeStart = System.nanoTime();
-			if(step>2100000)step-=100000;	
+			if(step>10)step-=5;	
 		}
 		
-		if(System.nanoTime()> savedTime+step)
+		if(System.currentTimeMillis()> savedTime+10)
 		{
-				savedTime = System.nanoTime();
+				savedTime = System.currentTimeMillis();
 				bougerX=true;
 		}
 		else{bougerX=false;}
@@ -146,8 +146,8 @@ public class Character {
 			if(top){
 				top=false;
 				if(!animer)xa=0;
-				else if(droite) xa=1;
-				else if(gauche) xa=-1;
+				else if(droite) xa=6;
+				else if(gauche) xa=-6;
 				inertDroite=false;
 				inertGauche=false;
 			}			
@@ -155,8 +155,8 @@ public class Character {
 		
 		if(top)
 		{
-			if(inertDroite)xa=1;
-			else if(inertGauche)xa=-1;;			
+			if(inertDroite)xa=6;
+			else if(inertGauche)xa=-6;;			
 		}
 		
 		if(x+xa < 0 || x+xa > 935*Main.SreenSize)xa=0;
@@ -170,7 +170,7 @@ public class Character {
 		
 		
 		if((!sauter && !collisionD()) && !ladder && !collisionE()){
-			ya = 2;
+			ya = 8;
 		}
 		
 		if(collisionT()){
@@ -218,7 +218,7 @@ public class Character {
 		if (e.getKeyCode() == KeyEvent.VK_Z)
 		{
 			if(collisionE()){
-				ya= -1;
+				ya= -6;
 				y = y + ya;
 				ladder=true;
 			}
@@ -244,15 +244,15 @@ public class Character {
 					if (droite && animer)inertDroite=true;
 					if (gauche && animer)inertGauche=true;
 					top=true;
-					ya=-2;
+					ya=-10;
 					
 			}
 			else if(y <=hauteurSaut) {sauter=false; }
 	}
 		if (e.getKeyCode() == KeyEvent.VK_Q)
 			{
-			if(!collisionM() || Level.up )xa = -1;
-			else  xa=-2;
+			if(!collisionM() || Level.up )xa = -6;
+			else  xa=-12;
 
 			animer=true;
 			gauche=true;
@@ -262,8 +262,8 @@ public class Character {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_D)
 		{
-			if(!collisionM() || Level.up )xa = 1;
-			else xa=2;
+			if(!collisionM() || Level.up )xa = 6;
+			else xa=12;
 
 			animer=true;
 			droite=true;
@@ -389,7 +389,7 @@ public class Character {
 	/*//////////////////////////////////////////////*/
 	/*//////     RECTANGLE DE COLLISION       //////*/
 	private Rectangle getBoundsD() {
-		return new Rectangle(x+1, y+HEIGHT, WIDTH-5 , 3);
+		return new Rectangle(x+5, y+HEIGHT+6, WIDTH-10 , 3);
 	}
 	
 	private Rectangle getBoundsR() {
@@ -397,11 +397,11 @@ public class Character {
 	}
 	
 	private Rectangle getBoundsL() {
-		return new Rectangle(x-1, y, 3 , HEIGHT);
+		return new Rectangle(x-1, y, 3 , HEIGHT-1);
 	}
 	
 	private Rectangle getBoundsT() {
-		return new Rectangle(x, y, WIDTH , 1);
+		return new Rectangle(x+5, y, WIDTH-10 , 1);
 	}
 	
 	private Rectangle getBoundsE() {

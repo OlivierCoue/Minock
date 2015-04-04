@@ -111,7 +111,7 @@ import javax.swing.JPanel;
 	    	}
 	    	
 			else if(droite){	
-    			
+    				
 				if(currentTimeMillis > savedTime2+(100*animationTime)){
     				img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/0"+animationTime+".png"));
     				animationTime++;	    				

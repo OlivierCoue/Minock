@@ -703,9 +703,8 @@ public class Level extends JPanel  {
 				 			catTimer=0;
 				 			saveTimeCat = true;
 				 		}
-				 	}
-				    
-				 } catch (IOException e) {}
+				 	}	    
+			 } catch (IOException e) {}
 			 if(sign!=null){
 				 sign.getGraphics();
 				 g.drawImage(sign,target[0]+30*size, target[1]+60*size, treeImg);

@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -23,7 +25,7 @@ public class Window extends JFrame{
 	public static int SIZE = Main.SreenSize;
 	public static int LEVELNUMBER = 15, BOSSLEVEL = 9;
 	public static String WORLD;
-	public static boolean MUTE = false, dead = false;
+	public static boolean MUTE = true, dead = false;
 	private NewGameImages newGame;
 	private JPanel containerTotal = new JPanel(), containerMenu = new JPanel(), containerLevel = new JPanel();
 	private JLabel loadingScreen = new JLabel(new ImageIcon("image/big/menu/loadingScreen.gif"));
@@ -151,14 +153,24 @@ public class Window extends JFrame{
 		
 		
 		/*REFRESH*/
-		while(true) {
+		new Timer().schedule(new TimerTask() {
+			public void run()  {
+				if(!pause){
+					if(!inMenu && level[levelActuel]!=null)level[levelActuel].play();
+				}
+				containerTotal.repaint();
+				containerTotal.revalidate();
+				if(level[levelActuel]!=null && !inMenu && !level[levelActuel].isTransitionDone())repaint();			
+			}
+			}, 1000, 10);
+		/*while(true) {
 			if(!pause){
 				if(!inMenu && level[levelActuel]!=null)level[levelActuel].play();
 			}
 			containerTotal.repaint();
 			containerTotal.revalidate();
 			if(level[levelActuel]!=null && !inMenu && !level[levelActuel].isTransitionDone())repaint();			
-		}	
+		}*/	
 		
 	}
 	
