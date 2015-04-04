@@ -19,8 +19,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/sun-jai_codec.jar"/>
-	<classpathentry kind="var" path="MEDIA"/>
-	<classpathentry kind="var" path="MEDIA/sun-jai_codec.jar"/>
-	<classpathentry kind="lib" path="D:/Olivier/Travail/Jeux/minock/lib/vlcj.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -127,8 +127,7 @@ public class Window extends JFrame{
 						resetMenu();
 						addListener();
 						pause=true;
-						containerLevel.add(Pause, 0);
-						
+						containerLevel.add(Pause, 0);						
 					}
 					else {
 						menu = null;
@@ -136,8 +135,7 @@ public class Window extends JFrame{
 						level[levelActuel].setPause(false);
 						level[levelActuel].setTransitionDone(false);
 						containerLevel.remove(Pause);
-						if(level[levelActuel]!=null)containerLevel.add(level[levelActuel],BorderLayout.CENTER);
-
+						if(level[levelActuel]!=null)containerLevel.add(level[levelActuel],BorderLayout.CENTER);						
 					}
 					containerTotal.revalidate();
 			    	containerTotal.repaint();
@@ -170,7 +168,7 @@ public class Window extends JFrame{
 	
 	/*GO TO LEVEL*/
 	public void switchLevel(){
-		try{
+	
 		inMenu=true;
 		
 		if(!pause){
@@ -181,10 +179,12 @@ public class Window extends JFrame{
 			level[levelActuel].generate();
 			level[levelActuel].setResetTimer(true);
 			level[levelActuel].setBackground(Color.BLACK);
+		
 		}
 		else{
 			containerLevel.remove(Pause);
 			if(level[levelActuel]!=null)containerLevel.add(level[levelActuel],BorderLayout.CENTER);
+			System.out.println("end break");
 		}
 		pause=false;
 		level[levelActuel].setAlpha(0);
@@ -195,9 +195,7 @@ public class Window extends JFrame{
     	containerTotal.revalidate();
     	containerTotal.repaint();
     	inMenu=false;
-		}catch(NullPointerException e){
-			System.out.println("nullPointer");
-		}
+	
 	}
 		
 	
@@ -225,15 +223,22 @@ public class Window extends JFrame{
 		
 		class Play implements ActionListener{
 		    public void actionPerformed(ActionEvent a) {
-		    	newGame = new NewGameImages();
-		    	containerMenu.removeAll();
-		    	containerMenu.add(newGame);
-		    	/*switchLevel();
-		    	pause=false;
-		    	level[levelActuel].setPause(false);
-		    	level[levelActuel].setTransitionDone(false);
-		    	level[levelActuel].setAlpha(0);
-		    	menu = null;*/
+		    	if(level[levelActuel]==null){
+		    		newGame = new NewGameImages();
+		    		containerMenu.removeAll();
+			    	containerMenu.add(newGame);			    	
+		    	}
+		    	else{
+		    		menu = null;
+		    		pause=false;
+					level[levelActuel].setPause(false);
+					level[levelActuel].setTransitionDone(false);
+					containerLevel.remove(Pause);
+					if(level[levelActuel]!=null)containerLevel.add(level[levelActuel],BorderLayout.CENTER);
+			    	pause=false;
+		    	}
+				
+		    	
 		    }
 		  }
 		class Option implements ActionListener{
