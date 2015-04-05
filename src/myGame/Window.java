@@ -164,15 +164,9 @@ public class Window extends JFrame{
 				containerTotal.revalidate();
 				if(level[levelActuel]!=null && !inMenu && !level[levelActuel].isTransitionDone())repaint();			
 			}
-<<<<<<< HEAD
+
 			}, 0, 38);
-=======
-			containerTotal.repaint();
-			containerTotal.revalidate();
-			if(level[levelActuel]!=null && !inMenu && !level[levelActuel].isTransitionDone())repaint();
-		}	
->>>>>>> parent of 6eaaa28... Less lines for animations
-		
+
 	}
 	
 	
