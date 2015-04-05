@@ -105,6 +105,7 @@ import javax.swing.JPanel;
 		Dog = new JLayeredPane();
 		
 		if(startTimer2){savedTime2 = System.currentTimeMillis();startTimer2=false;}
+<<<<<<< HEAD
 		
 		
 		 try {   	
@@ -136,6 +137,22 @@ import javax.swing.JPanel;
 	    		
 			}
 			else if(droite){	
+=======
+		
+		 try {   	
+			if(gauche){
+				if(System.currentTimeMillis() > savedTime2+700)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/07.png"));
+				else if(System.currentTimeMillis() > savedTime2+600)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/06.png"));
+				else if(System.currentTimeMillis() > savedTime2+500)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/05.png"));
+				else if(System.currentTimeMillis() > savedTime2+400)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/04.png"));
+				else if(System.currentTimeMillis() > savedTime2+300)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/03.png"));
+				else if(System.currentTimeMillis() > savedTime2+200)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/02.png"));
+				else if(System.currentTimeMillis() > savedTime2+100)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/gauche/01.png"));
+				if(System.currentTimeMillis() > savedTime2+700)startTimer2=true;
+	    		
+			}
+			else if(droite){	
+>>>>>>> parent of 6eaaa28... Less lines for animations
     			if(System.currentTimeMillis() > savedTime2+700)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/07.png"));
     			else if(System.currentTimeMillis() > savedTime2+600)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/06.png"));
 				else if(System.currentTimeMillis() > savedTime2+500)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/05.png"));
@@ -144,6 +161,9 @@ import javax.swing.JPanel;
 				else if(System.currentTimeMillis() > savedTime2+200)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/02.png"));
 				else if(System.currentTimeMillis() > savedTime2+100)img = ImageIO.read(new File("image/"+chemin+"/"+Window.WORLD+"/ennemi/droite/01.png"));
     			if(System.currentTimeMillis() > savedTime2+700)startTimer2=true;
+<<<<<<< HEAD
+>>>>>>> parent of 6eaaa28... Less lines for animations
+=======
 >>>>>>> parent of 6eaaa28... Less lines for animations
 		    		
 			}
