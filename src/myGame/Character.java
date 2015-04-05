@@ -19,10 +19,9 @@ public class Character {
 	static int Y = 0;
 	private static String path;
 	private String caracImage;
-	private int iniX = 0, iniY = 0, x = 150, y = 600, xa = 0, ya = 0, i = 0, hauteurSaut = 0, levelNumber = 0;
-	private int[] animationTmer = new int[4];
+	private int iniX = 0, iniY = 0, x = 150, y = 600, xa = 0, ya = 0, i = 0, hauteurSaut = 0, jumpSpeed=1, levelNumber = 0;
 	double ySpeed=0, ySpeedX=-2490;
-	private double step=0;
+	private double step=0, step2=0;
 	private long savedTime=0, savedTime2=0, savedTimeStart=0, savedTimeJump=0;
 	private boolean compterHauteur = true, sauter = false, droite = true, gauche = false, bougerX, bougerY, animer = false, top=false, inertDroite=false, 
 					inertGauche=false, ladder=false, saveTime=true, startStep=true, allowJump=false;
@@ -94,15 +93,14 @@ public class Character {
 		this.movingList= mouvantetList;
 		this.movingList2= mouvantetList2;
 		this.levelNumber = levelNumber;
-		
 	}
 	
 	
 	/*//////////////////////////////////////////////*/
 	/*//////////        DEPLACEMENT        /////////*/
 	public void move() {
-		if(Main.SreenSize==1){path="small";}
-		else if(Main.SreenSize==2){path="big";}
+		if(Main.SreenSize==1){path="small";step2=0.5;}
+		else if(Main.SreenSize==2){path="big";step2=0;}
 		if(caracImage!="grome"){
 			Character.X = x;
 			Character.Y = y;
@@ -235,7 +233,8 @@ public class Character {
 				compterHauteur=false;
 				ySpeedX = -230;
 				sauter=true;
-				if(allowJump){ ySpeed=ySpeed/2;}
+				if(allowJump){jumpSpeed=2; ySpeed=ySpeed/2;}
+				else jumpSpeed=1;
 				allowJump=false;
 			}
 			if(y > hauteurSaut && sauter)
@@ -419,48 +418,80 @@ public class Character {
 		
 		JLayeredPane EverythingButPlayer;
 	    EverythingButPlayer = new JLayeredPane();
+	    
 	    long currentTimeMillis = System.currentTimeMillis();
-		if(saveTime){savedTime2 = currentTimeMillis;saveTime=false;animationTmer[0]=1;animationTmer[1]=1;}
+		if(saveTime){savedTime2 = currentTimeMillis;saveTime=false;}
 	    
 	    try {
 	    	
     		
 	    	if(animer && (droite || gauche) && collisionD()){
 		    	if(droite && animer ){
+		    	
+		    			if( currentTimeMillis > savedTime2+(720))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/08.png"));
+		
+		    			else if(currentTimeMillis > savedTime2+(630))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/07.png"));
+		    
+		    			else if(currentTimeMillis > savedTime2+(540))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/06.png"));
+		  
+		    			else if(currentTimeMillis > savedTime2+(450))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/05.png"));
+		    	
+		    			else if(currentTimeMillis > savedTime2+(360))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/04.png"));
 		    			
-		    		if(animationTmer[0]==9){saveTime=true;}
-	    			if(currentTimeMillis > savedTime2+(90*animationTmer[0])){
-	    				img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/0"+(animationTmer[0])+".png"));
-	    				animationTmer[0]++;	    				
-	    			}		    			
-		    	}
+		    			else if(currentTimeMillis > savedTime2+(270))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/03.png"));
+		    			
+		    			else if(currentTimeMillis > savedTime2+(180))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/02.png"));
+		    			
+		    			else if(currentTimeMillis > savedTime2+(90))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/01.png"));
+		    		if(currentTimeMillis > savedTime2+(720))saveTime=true;
+		    		}
 
 		    	if(gauche && animer){
-		    		
-		    		if(animationTmer[0]==9){saveTime=true;}
-	    			if(currentTimeMillis > savedTime2+(90*animationTmer[0])){
-	    				img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/0"+(animationTmer[0])+".png"));
-	    				animationTmer[0]++;	    			
-	    			}		    		
-		    	}
+		    			if(currentTimeMillis > savedTime2+(720))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/08.png"));
+		 
+		    			else if(currentTimeMillis > savedTime2+(630))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/07.png"));
+		 
+		    			else if(currentTimeMillis > savedTime2+(540))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/06.png"));
+		    
+		    			else if(currentTimeMillis > savedTime2+(450))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/05.png"));	
+		    			
+		    			else if(currentTimeMillis > savedTime2+(360))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/04.png"));
+		    			
+		    			else if(currentTimeMillis > savedTime2+(270))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/03.png"));
+		    			
+		    			else if(currentTimeMillis > savedTime2+(180))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/02.png"));
+		    			
+		    			else if(currentTimeMillis > savedTime2+(90))img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/01.png"));
+		    		if(currentTimeMillis > savedTime2+(720))saveTime=true;
+		    		}
 	    	}
 	    	else if(sauter && droite)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/jump.png"));
 	    	else if(sauter && gauche)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/jump.png"));
 	    	else if(droite){
-	    		
-    			if(currentTimeMillis > savedTime2+(150*animationTmer[1])){
-    				img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/st0"+(animationTmer[1])+".png"));
-    				animationTmer[1]++;	    				
-    			}
-    			if(animationTmer[1]>=6){saveTime=true;}
+	    		if(currentTimeMillis > savedTime2+750)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/st05.png"));
+	   		 
+    			else if(currentTimeMillis > savedTime2+600)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/st04.png"));
+ 
+    			else if(currentTimeMillis > savedTime2+450)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/st03.png"));
+    
+    			else if(currentTimeMillis > savedTime2+300)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/st02.png"));	
+    			
+    			else if(currentTimeMillis > savedTime2+150)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/droite/st01.png"));
+
+	    		if(currentTimeMillis > savedTime2+750)saveTime=true;
 	    	}
 	    	else if(gauche){
-	    	
-	    		if(currentTimeMillis > savedTime2+(150*animationTmer[1])){
-    				img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/st0"+(animationTmer[1])+".png"));
-    				animationTmer[1]++;	    				
-    			}
-    			if(animationTmer[1]>=6){saveTime=true;}
+	    		if(currentTimeMillis > savedTime2+750)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/st05.png"));
+	   		 
+    			else if(currentTimeMillis > savedTime2+600)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/st04.png"));
+ 
+    			else if(currentTimeMillis > savedTime2+450)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/st03.png"));
+    
+    			else if(currentTimeMillis > savedTime2+300)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/st02.png"));	
+    			
+    			else if(currentTimeMillis > savedTime2+150)img = ImageIO.read(new File("image/"+path+"/caractere/"+caracImage+"/gauche/st01.png"));
+
+	    		if(currentTimeMillis > savedTime2+750)saveTime=true;
 	    	}
 	    	
 	    } catch (IOException e) {

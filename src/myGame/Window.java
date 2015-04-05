@@ -163,7 +163,7 @@ public class Window extends JFrame{
 				containerTotal.revalidate();
 				if(level[levelActuel]!=null && !inMenu && !level[levelActuel].isTransitionDone())repaint();			
 			}
-		}, 0, 38);
+			}, 0, 38);
 		
 	}
 	
