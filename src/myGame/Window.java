@@ -37,7 +37,7 @@ public class Window extends JFrame{
 	private Option option = new Option();
 	private int levelActuel = 0, i=0;
 	private static int levelNumber=LEVELNUMBER;		
-	private boolean pause=false, inMenu=true;
+	private boolean pause=false, inMenu=true, loadingFinished = false;
 	public static String[] passWord = new String[levelNumber];
 	
 	public Window() throws Throwable {	
@@ -70,6 +70,7 @@ public class Window extends JFrame{
 			level[i]=null;
 		}
 		if(!MUTE)Sound.AMBIENCE.loop();
+		loadingFinished = true;
 		containerTotal.removeAll();
 		containerTotal.add(containerMenu);
 		revalidate();
@@ -163,7 +164,14 @@ public class Window extends JFrame{
 				containerTotal.revalidate();
 				if(level[levelActuel]!=null && !inMenu && !level[levelActuel].isTransitionDone())repaint();			
 			}
+<<<<<<< HEAD
 			}, 0, 38);
+=======
+			containerTotal.repaint();
+			containerTotal.revalidate();
+			if(level[levelActuel]!=null && !inMenu && !level[levelActuel].isTransitionDone())repaint();
+		}	
+>>>>>>> parent of 6eaaa28... Less lines for animations
 		
 	}
 	
