@@ -560,8 +560,8 @@ public class Level extends JPanel  {
 				if(movingPlatList[i].getAxe()==1){
 					if(player!=null && this.player.collisionMU())up=true;
 					else up=false;
-					if(movingPlatList[i].getPosY()==movingPlatList[i].getMinY())movingPlatList[i].setGo(true);
-					if(movingPlatList[i].getPosY()==movingPlatList[i].getMaxY())movingPlatList[i].setGo(false);
+					if(movingPlatList[i].getPosY()<=movingPlatList[i].getMinY())movingPlatList[i].setGo(true);
+					if(movingPlatList[i].getPosY()>=movingPlatList[i].getMaxY())movingPlatList[i].setGo(false);
 					if(startTimerMove[i]==1){savedTimeMove[i]=System.nanoTime();startTimerMove[i]=0;}
 					
 					this.rectList[rectMovePlatList[i]] = new Rectangle(movingPlatList[i].getPosX(), movingPlatList[i].getPosY() ,movingPlatList[i].getWidth(), 25*size);
@@ -569,8 +569,8 @@ public class Level extends JPanel  {
 					
 	
 					if((System.nanoTime() > savedTimeMove[i]+8000000) ){
-						if(movingPlatList[i].getPosY() < movingPlatList[i].getMaxX() && movingPlatList[i].isGo()) movingPlatList[i].setPosY(movingPlatList[i].getPosY()+1);
-						else if(movingPlatList[i].getPosY() > movingPlatList[i].getMinY() && !movingPlatList[i].isGo())movingPlatList[i].setPosY(movingPlatList[i].getPosY()-1);
+						if(movingPlatList[i].getPosY() < movingPlatList[i].getMaxX() && movingPlatList[i].isGo()) movingPlatList[i].setPosY(movingPlatList[i].getPosY()+6);
+						else if(movingPlatList[i].getPosY() > movingPlatList[i].getMinY() && !movingPlatList[i].isGo())movingPlatList[i].setPosY(movingPlatList[i].getPosY()-6);
 						startTimerMove[i]=1;
 					}
 					

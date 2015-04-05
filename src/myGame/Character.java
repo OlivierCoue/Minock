@@ -176,8 +176,8 @@ public class Character {
 		if(collisionT()){
 			sauter=false;
 		}
-		if(collisionMU() && Level.up && !sauter && ya<1	){ya=-1;allowJump=true;}
-		if(collisionMU() && ya != -1 && !sauter)ya=-1;
+		if(collisionMU() && Level.up && !sauter && ya<1	){ya=-6;allowJump=true;}
+		if(collisionMU() && ya != -1 && !sauter)ya=-6;
 
 		if(bougerX){x = x + xa;}
 		if(y <=hauteurSaut){sauter=false;}

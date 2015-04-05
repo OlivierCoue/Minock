@@ -54,14 +54,14 @@ import javax.swing.JPanel;
 		if( (posCarY > posY-50*Main.SreenSize) && ((posCarX >= posX) && ((posCarX <= posX+35*Main.SreenSize)) || ((posCarX <= posX) && (posCarX > posX-20*Main.SreenSize))) && (posCarY < posY+35*Main.SreenSize)){Window.dead=true;if(!Window.MUTE)Sound.DEAD.play();}
 		else if((posCarX >= maxGauche) && (posCarX <= maxDroite) && (posCarY > posY-50*Main.SreenSize) && (posCarY < posY+35*Main.SreenSize) ){
 			if(posCarX > posX){
-				if(stopDroite==30){xa=1;stopDroite=0;droite=true;
+				if(stopDroite==16){xa=6;stopDroite=0;droite=true;
 				gauche=false;}
 				if(bougerX)stopDroite++;
 				
 				stopGauche=0;
 			}
 			else {
-				if(stopGauche==15*Main.SreenSize){xa=-1;stopGauche=0;droite=false;
+				if(stopGauche==8*Main.SreenSize){xa=-6;stopGauche=0;droite=false;
 				gauche=true;}
 				if(bougerX)stopGauche++;		
 				stopDroite=0;
@@ -70,14 +70,14 @@ import javax.swing.JPanel;
 		//RANDOM MOVE
 		else if(Target!=posX){
 			if(Target > posX){
-				if(stopDroite==15*Main.SreenSize){xa=1;stopDroite=0;droite=true;
+				if(stopDroite==8*Main.SreenSize){xa=6;stopDroite=0;droite=true;
 				gauche=false;}
 				if(bougerX)stopDroite++;
 				
 				stopGauche=0;
 			}
 			else {
-				if(stopGauche==15*Main.SreenSize){xa=-1;stopGauche=0;droite=false;
+				if(stopGauche==8*Main.SreenSize){xa=-6;stopGauche=0;droite=false;
 				gauche=true;}
 				if(bougerX)stopGauche++;
 				
